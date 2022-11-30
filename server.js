@@ -63,6 +63,10 @@ app.get('*', (req, res) => {
     res.end
 })
 
+app.listen(port, () => {
+    console.log("Server listening on port" + port)
+})
+
 
 
 
