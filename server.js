@@ -1,5 +1,7 @@
+#!/usr/bin/env node
+
 import minimist from "minimist";
-import  express  from "express";
+import express from "express";
 import { roll } from "./lib/roll.js"  //unsure if this is the correct path
 
 const args = minimist(process.argv.slice(2));
@@ -9,7 +11,7 @@ if(args.port){
     port = args.port;
 }
 //var express = require('express');
-var app = express();
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -17,13 +19,13 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.get('/app/', (req, res) => {
-    res.send('200, OK');
-    res.end;
+    res.send('200 OK');
+   // res.end;
 })
 
 app.get('/app/roll/', (req, res) => {
     res.status(200).send(roll(6,2,1));
-    res.end;
+   // res.end;
 })
 
 app.post('/app/roll/', (req, res) => {
@@ -31,7 +33,7 @@ app.post('/app/roll/', (req, res) => {
     let dice = parseInt(req.body.dice);
     let rolls = parseInt(req.body.rolls);
     res.status(200).send(roll(sides, dice, rolls));
-    res.end;
+   // res.end;
 })
 
 app.get('/app/roll/:sides/', (req, res) => {
